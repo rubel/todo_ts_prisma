@@ -1,15 +1,23 @@
+"use client"
+
 import { type } from 'os'
 import React from 'react'
 
 type TodoItemProps = {
     id: string,
     title: string,
-    complete: boolean
+    complete: boolean,
+    todoClicked: (id:string, complete:boolean)=>void
 }
 
-function TodoItem({id,title,complete}:TodoItemProps) {
+
+function TodoItem({id,title,complete,todoClicked}:TodoItemProps) {
   return (
-    <div style={complete?{color: 'gray'}:{color:'black'}}>{title}</div>
+    <div className='cursor-pointer' onClick={()=>{
+        todoClicked(id,complete);
+    }} style={complete?{color: 'gray'}:{color:'white'}}>
+        <span>{title}</span>
+    </div>
   )
 }
 
